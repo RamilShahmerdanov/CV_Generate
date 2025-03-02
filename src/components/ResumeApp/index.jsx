@@ -5,18 +5,20 @@ import ResumeShowTable from "./ResumeShow Table";
 import styles from "./resume.module.css";
 
 function ResumeApp() {
-  const [data, setData] = useState({
-    image_url:
-      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTqafzhnwwYzuOTjTlaYMeQ7hxQLy_Wq8dnQg&s",
+  const [data, setData] = useState(() => {
+    const savedData = localStorage.getItem("savedData");
+    return savedData ? JSON.parse(savedData) : [];
   });
+  const [selectedCV, setSelectedCV] = useState(null);
+
   return (
-    <div>
+    <div className={styles.mainsite}>
       <div className={styles.resumecontainer}>
-        <ResumeGenerate setData={setData} />
-        <ResumePreview data={data} />
+        <ResumeGenerate setData={setData} data={data} setSelectedCV={setSelectedCV} />
+        <ResumePreview data={data} selectedCV={selectedCV} />
       </div>
       <div>
-        <ResumeShowTable data={data} />
+        <ResumeShowTable data={data} setData={setData} setSelectedCV={setSelectedCV} />
       </div>
     </div>
   );
