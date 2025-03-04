@@ -31,7 +31,7 @@ function ResumeShowTable({ data, setData, setSelectedCV }) {
         <tbody>
           {data.length === 0 ? (
             <tr>
-              <td colSpan="6" style={{ textAlign: "center", padding: "20px" }}>
+              <td colSpan="6" style={{ textAlign: "center", padding: "20px", color:"grey", fontSize:"30px", fontWeight:"600" }}>
                 No CV added yet.
               </td>
             </tr>
