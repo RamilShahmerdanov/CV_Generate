@@ -1,5 +1,5 @@
 export function isValidName(name) {
-    const nameRegex = /^[a-zA-ZəöğüıİƏÖĞÜÇŞçş]{2,50}$/u;
+    const nameRegex = /^[a-zA-ZəöğüıİƏÖĞÜÇŞçş ]{2,50}$/u;
     return nameRegex.test(name);
   }
   

@@ -1,27 +1,61 @@
 import React from "react";
 import styles from "./resume.module.css";
+import { usePDF } from 'react-to-pdf';
 
 function ResumePreview({ selectedCV }) {
-  if (!selectedCV) return <p style={{paddingLeft:"20%", fontSize:"25px", fontWeight:"600", color:"red"}}>No CV Added</p>;
+  const { toPDF, targetRef } = usePDF({filename:  selectedCV?.full_name+'.pdf'});
+  if (!selectedCV)
+    return (
+      <div className={styles.formprev}>
+        <p>Submit the form to preview your CV here.</p>
+      </div>
+    );
 
   console.log("selectedCV", selectedCV);
-  
-
-  
 
   return (
-    <div className={styles.formcontainer}>
-      <h2>CV Preview</h2>
-      <div className={styles.preview}>
-        
-        <img width={200} height={200} src={selectedCV.image_url} alt="" />
-        <h3>{selectedCV.full_name}</h3>
-        <p>{selectedCV.email}</p>
-        <p>{selectedCV.phone}</p>
-        <p>{selectedCV.address}</p>
-        <p>{selectedCV.skills}</p>
+    <>
+
+      <div ref={targetRef} className={`${styles.formpreview} ${styles.pdfContainer}`}>
+        <div className={styles.preview}>
+          <div>
+            <p>
+              <p>Full name </p>
+              {selectedCV?.full_name}
+              <hr />
+            </p>
+            <p>
+              {" "}
+              <p>Email</p>
+              {selectedCV?.email}
+            </p>
+            <hr />
+
+            <p>
+              <p>Phone:</p>
+              {selectedCV?.phone}
+            </p>
+            <hr />
+
+            <p>
+              <p>Adress</p>
+              {selectedCV?.address}
+            </p>
+            <hr />
+
+            <p>
+              <p>Skills</p>
+              {selectedCV?.skills}
+            </p>
+            <hr />
+          </div>
+
+          <img width={200} height={200} src={selectedCV.image_url} alt="" />
+        </div>
       </div>
-    </div>
+      <button className={styles.btndwn} onClick={toPDF}>Download CV</button>
+
+    </>
   );
 }
 

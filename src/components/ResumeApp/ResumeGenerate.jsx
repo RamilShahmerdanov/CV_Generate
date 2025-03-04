@@ -130,7 +130,7 @@ function ResumeGenerate({ setData, data, setSelectedCV }) {
           <p className={styles.error}>{errors.skills}</p>
         ) : null}
 
-        <button type="submit">Generate Resume</button>
+        <button type="submit">Submit</button>
       </form>
     </div>
   );
