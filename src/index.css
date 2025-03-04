@@ -1,5 +1,6 @@
 body {
   margin-top: 70px;
+  overflow-x: hidden; 
 
   margin-left: 0;
   background-image: url(https://img.freepik.com/free-photo/laptop-near-eyeglasses-stationery_23-2147958086.jpg?semt=ais_hybrid);
